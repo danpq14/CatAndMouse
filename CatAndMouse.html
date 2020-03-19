@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Mouse(name,weight,speed,mode) {
+        this.name=name;
+        this.weight=weight;
+        this.speed=speed;
+        this.mode=mode;
+        this.talk=function (text) {
+            console.log(this.name + ' : ' + text);
+        }
+        this.checkMouse=function () {
+            console.log(this.name +' : '+this.mode)
+        }
+    }
+    function Cat(name,weight,speed) {
+        this.name=name;
+        this.weight=weight;
+        this.speed=speed;
+        this.talk=function (text) {
+            console.log(this.name + ' : '+ text)
+        }
+        this.increaseSpeed=function (number) {
+            this.speed+=number;
+        }
+        this.catchMouse=function (Mouse) {
+            if (Mouse.mode=='live' && this.speed > Mouse.speed) {
+                Mouse.mode = 'dead';
+                this.weight+=Mouse.weight;
+            } else if (this.speed < Mouse.speed) {
+                Mouse.talk('You are too slow ! Bleu Bleu');
+            }
+        }
+        this.checkCat=function () {
+            console.log(this.name + ' : '+this.weight)
+        }
+    }
+    let jerry=new Mouse('Jerry',5,15,'live');
+    let tom= new Cat('Tom',30,3);
+    jerry.checkMouse();
+    tom.talk('Stop ! Bitchhhhh !!!');
+    jerry.talk('éc éc');
+    tom.catchMouse(jerry);
+    tom.increaseSpeed(10);
+    tom.catchMouse(jerry);
+    tom.talk('Grrrrrrr~~~~~');
+    tom.increaseSpeed(4);
+    tom.catchMouse(jerry);
+    tom.checkCat();
+    jerry.checkMouse();
+</script>
+</body>
+</html>
